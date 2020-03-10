@@ -3,7 +3,15 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+import Vant from 'vant';
+import 'vant/lib/index.css';
+
+Vue.use(Vant);
+
 Vue.config.productionTip = false
+
+// 字体图标
+import "@/assets/style/font.css"
 
 new Vue({
   router,
