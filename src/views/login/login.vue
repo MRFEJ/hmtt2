@@ -37,7 +37,7 @@ export default {
     return {
       isok: false,
       form: {
-        mobile: "18511111111",
+        mobile: "18807789766",
         code: "246810"
       },
       vali: {
@@ -57,12 +57,12 @@ export default {
         });
         try {
           let res = await login(this.form);
-          window.console.log(res);
+          // window.console.log(res);
           this.$store.commit("changeMytoken", res.data.token);
           this.$store.commit("changeRestoken", res.data.refresh_token);
-          setToken("myToken", JSON.stringify(res.data.token));
-          setToken("resToken", JSON.stringify(res.data.refresh_token));
-          this.$router.push('/home')
+          setToken("myToken", JSON.stringify(res.data));
+          // setToken("resToken", JSON.stringify(res.data.refresh_token));
+          this.$router.push("/home");
           this.$toast.success("登录成功");
         } catch (error) {
           this.$toast.fail("手机号或验证码错误");
@@ -92,6 +92,9 @@ export default {
 </script>
 
 <style scoped lang="less">
+.box {
+  background-color: #f5f7f9;
+}
 .van-nav-bar.van-hairline--bottom {
   background-color: #3e9df8;
   .van-nav-bar__title.van-ellipsis {

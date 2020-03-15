@@ -10,6 +10,9 @@ Vue.use(Vant);
 
 Vue.config.productionTip = false
 
+// 导入全局过滤器
+import "@/filter/filter.js"
+
 // 字体图标
 import "@/assets/style/font.css"
 

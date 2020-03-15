@@ -9,7 +9,7 @@ export default {
 </script>
 
 <style>
-html,body,.box{
+html,body{
     height: 100%;
     background-color: #f5f7f9;
 }
