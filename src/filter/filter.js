@@ -9,5 +9,5 @@ dayjs.extend(relativeTime)
 import 'dayjs/locale/zh-cn'
 dayjs.locale('zh-cn')
 Vue.filter('filterData', function (data) {
-    return dayjs().to(dayjs(data)) // 2 年以前
+    return dayjs().from(dayjs(data)) // 2 年以前
 })

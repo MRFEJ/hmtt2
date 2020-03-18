@@ -10,30 +10,12 @@ export function searchSuggestion(params) {
 }
 
 // // 用户搜索结果
-// export function search(params) {
-//     return requery({
-//         url: 'search',
-//         method: 'get',
-//         params
-//     })
-// }
+export function getSearch(params) {
+    return requery({
+        url: 'search',
+        method: 'get',
+        params
+    })
+}
 
-// // 删除用户搜索记录
-// export function searchHistories() {
-//     return requery({
-//         url: 'search/histories',
-//         method: 'DELETE'
-//     })
-// }
-
-
-
-// // 用户搜索记录
-// export function searchHistories() {
-//     return requery({
-//         url: 'search/histories',
-//         method: 'get',
-        
-//     })
-// }
 

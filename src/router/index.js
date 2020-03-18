@@ -7,13 +7,18 @@ import video from "@/views/video/video"
 import questions from "@/views/questions/questions"
 import my from "@/views/my/my"
 import search from "@/views/search/search"
+import searchResult from "@/views/searchResult/searchResult"
+import compoment from "@/views/compoment/compoment"
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/login',
-    name: 'login',
+    component: login
+  },
+  {
+    path: '/goLogin',
     component: login
   },
   {
@@ -49,6 +54,15 @@ const routes = [
     path: '/search',
     name: 'search',
     component: search
+  },
+  {
+    path: '/searchResult/:key',
+    name: 'searchResult',
+    component: searchResult
+  },
+  {
+    path: '/compoment/:key',
+    component: compoment
   },
 
 ]

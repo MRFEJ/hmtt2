@@ -41,6 +41,7 @@
 
 <script>
 import { userAllChannel, userEditChannel, userDelChannel } from "@/api/home.js";
+import { setToken } from "@/utils/token";
 export default {
   props: {
     list: {
@@ -66,9 +67,12 @@ export default {
     }
   },
   async created() {
+    // 获取全部频道
     let res = await userAllChannel();
     // window.console.log(res);
     this.allList = res.data.channels;
+
+    setToken("channelsList", JSON.stringify(this.list));
   },
   methods: {
     // 点击添加频道
@@ -90,8 +94,11 @@ export default {
           seq: index + 1
         };
       });
-
-      userEditChannel({ channels });
+      if (this.$store.state.myToken) {
+        userEditChannel({ channels });
+      } else {
+        setToken("channelsList", JSON.stringify(this.list));
+      }
     },
     // 删除频道
     remove(item) {
@@ -100,9 +107,14 @@ export default {
           this.list.splice(i, 1);
         }
       }
-      userDelChannel({
-        channels: [item = item.id]
-      });
+      if (this.$store.state.myToken) {
+        userDelChannel({
+          channels: [(item = item.id)]
+        });
+      } else {
+        setToken("channelsList", JSON.stringify(this.list));
+      }
+
       // let channels = this.list.slice(1).map((item, index) => {
       //   return {
       //     id: item.id,

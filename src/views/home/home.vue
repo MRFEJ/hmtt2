@@ -66,6 +66,7 @@
 import more from "./components/more";
 import { userChannel, userList } from "@/api/home.js";
 import popup from "./components/popup";
+import { getToken } from "@/utils/token.js";
 export default {
   components: {
     popup,
@@ -80,20 +81,43 @@ export default {
     };
   },
   async created() {
-    let res = await userChannel();
-    // window.console.log(res);
-    this.channelList = res.data.channels;
-    for (var i = 0; i < this.channelList.length; i++) {
-      let item = this.channelList[i];
-      // 新闻列表
-      this.$set(item, "list", []);
-      // 是否加载完成
-      this.$set(item, "finished", false);
-      // 列表的值 默认是fasle
-      this.$set(item, "loading", false);
+    // 判断有没有token
+    if (this.$store.state.myToken) {
+      let res = await userChannel();
+      // window.console.log(res);
+      this.channelList = res.data.channels;
+      for (var i = 0; i < this.channelList.length; i++) {
+        let item = this.channelList[i];
+        // 新闻列表
+        this.$set(item, "list", []);
+        // 是否加载完成
+        this.$set(item, "finished", false);
+        // 列表的值 默认是fasle
+        this.$set(item, "loading", false);
 
-      this.$set(item, "isLoading", false);
-      item.pre_date = Date.now();
+        this.$set(item, "isLoading", false);
+        item.pre_date = Date.now();
+      }
+    } else {
+      // 判断本地有没有储存频道
+      if (getToken("channelsList")) {
+        this.channelList = getToken("channelsList");
+      } else {
+        let res = await userChannel();
+        this.channelList = res.data.channels;
+        for (var i = 0; i < this.channelList.length; i++) {
+          let item = this.channelList[i];
+          // 新闻列表
+          this.$set(item, "list", []);
+          // 是否加载完成
+          this.$set(item, "finished", false);
+          // 列表的值 默认是fasle
+          this.$set(item, "loading", false);
+
+          this.$set(item, "isLoading", false);
+          item.pre_date = Date.now();
+        }
+      }
     }
   },
 
