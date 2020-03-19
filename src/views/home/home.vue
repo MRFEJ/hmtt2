@@ -29,7 +29,7 @@
                 <!-- 使用 title 插槽来自定义标题 -->
                 <template slot="title">
                   <div class="title">
-                    <span>{{it.title}}</span>
+                    <span @click="$router.push(`/particulars/${it.art_id}`)">{{it.title}}</span>
                     <van-image v-if="it.cover.type==1" :src="it.cover.images[0]" />
                   </div>
                   <!-- 宫格 -->
@@ -66,7 +66,7 @@
 import more from "./components/more";
 import { userChannel, userList } from "@/api/home.js";
 import popup from "./components/popup";
-import { getToken } from "@/utils/token.js";
+import { getToken, setToken } from "@/utils/token.js";
 export default {
   components: {
     popup,
@@ -100,11 +100,17 @@ export default {
       }
     } else {
       // 判断本地有没有储存频道
-      if (getToken("channelsList")) {
+      let res=getToken("channelsList")
+      if (res) {
         this.channelList = getToken("channelsList");
+        window.console.log("222");
+        // window.console.log(getToken("channelsList"));
+
+        window.console.log(this.channelList);
       } else {
         let res = await userChannel();
         this.channelList = res.data.channels;
+        window.console.log("11111");
         for (var i = 0; i < this.channelList.length; i++) {
           let item = this.channelList[i];
           // 新闻列表
@@ -117,6 +123,7 @@ export default {
           this.$set(item, "isLoading", false);
           item.pre_date = Date.now();
         }
+        setToken("channelsList", JSON.stringify(this.channelList));
       }
     }
   },

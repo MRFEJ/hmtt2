@@ -17,6 +17,17 @@ export function userList(params) {
     })
 }
 
+// 拉黑用户
+export function userBlacklists(data) {
+    return requery({
+        url: 'user/blacklists',
+        method: 'post',
+        data
+    })
+}
+
+
+
 // 获取全部频道
 export function userAllChannel() {
     return requery({
@@ -56,16 +67,6 @@ export function userDislikes(data) {
 export function userReports(data) {
     return requery({
         url: 'article/reports',
-        method: 'post',
-        data
-    })
-}
-
-
-// 拉黑用户
-export function userBlacklists(data) {
-    return requery({
-        url: 'user/blacklists',
         method: 'post',
         data
     })

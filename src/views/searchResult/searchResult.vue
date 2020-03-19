@@ -27,7 +27,7 @@
           </div>
           <!-- 评论 -->
           <div class="comments">
-            <div class="c_box" @click="pl(item.ch_id)">
+            <div class="c_box" @click="pl(item.art_id)">
               <van-icon name="comment-o" />
               <span>评论</span>
             </div>
@@ -69,7 +69,7 @@ export default {
     pl(id) {
       if (this.commen()) {
         // window.console.log("评论");
-        this.$router.push(`/compoment/${id}`);
+        this.$router.push(`/particulars/${id}`);
       }
     },
 
@@ -80,7 +80,7 @@ export default {
         per_page: this.pageTotal,
         q: this.$route.params.key
       });
-      // window.console.log(res.data.results);
+      // window.console.log(res);
 
       // 求出总页数
       let total_page = Math.ceil(res.data.total_count / res.data.per_page);

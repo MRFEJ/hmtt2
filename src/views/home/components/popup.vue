@@ -72,7 +72,6 @@ export default {
     // window.console.log(res);
     this.allList = res.data.channels;
 
-    setToken("channelsList", JSON.stringify(this.list));
   },
   methods: {
     // 点击添加频道

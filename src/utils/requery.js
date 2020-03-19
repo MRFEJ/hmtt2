@@ -7,8 +7,12 @@ const requery = axios.create({
   // 对响应数据进行修改
   transformResponse: [function (data) {
     // 对 data 进行任意转换处理
+    try {
+      return JSONbig.parse(data);
 
-    return JSONbig.parse(data);
+    } catch (error) {
+      return data
+    }
   }],
 })
 // 在创建一个请求的对象

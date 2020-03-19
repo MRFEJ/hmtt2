@@ -8,7 +8,7 @@ import questions from "@/views/questions/questions"
 import my from "@/views/my/my"
 import search from "@/views/search/search"
 import searchResult from "@/views/searchResult/searchResult"
-import compoment from "@/views/compoment/compoment"
+import particulars from "@/views/particulars/particulars"
 
 Vue.use(VueRouter)
 
@@ -61,8 +61,8 @@ const routes = [
     component: searchResult
   },
   {
-    path: '/compoment/:key',
-    component: compoment
+    path: '/particulars/:key',
+    component: particulars
   },
 
 ]
