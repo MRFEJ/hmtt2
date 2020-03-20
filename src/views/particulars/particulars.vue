@@ -54,6 +54,9 @@
         <div class="you_like">猜你喜欢</div>
       </van-cell>
 
+      <!-- 品论回复 -->
+      <comment></comment>
+
       <!-- 评论列表 -->
       <plList></plList>
 
@@ -66,7 +69,7 @@
 <script>
 import plList from "./components/plList";
 import write from "./components/write";
-
+import comment from "./components/comment";
 import {
   article,
   articleLikings,
@@ -77,9 +80,11 @@ import {
 
 import { followingUser, qxgzUser } from "@/api/user";
 export default {
+  name: "particulars",
   components: {
     plList,
-    write
+    write,
+    comment
   },
   data() {
     return {

@@ -30,7 +30,7 @@ export function qxLikings(data) {
 export function sendPl(data) {
     return requery({
         url: `comments`,
-        method: "POST",
+        method: "post",
         data
     })
 }

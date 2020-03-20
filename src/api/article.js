@@ -1,5 +1,33 @@
 import requery from "@/utils/requery.js"
 
+// 不喜欢文章
+export function articleDislikes(data) {
+    return requery({
+        url: 'article/dislikes',
+        method: 'post',
+        data
+    })
+}
+
+// 举报文章
+export function articleReports(data) {
+    return requery({
+        url: 'article/reports',
+        method: 'post',
+        data
+    })
+}
+
+// 获取文章列表
+export function articleList(params) {
+    return requery({
+        url: 'http://ttapi.research.itcast.cn/app/v1_1/articles',
+        method: 'get',
+        params
+    })
+}
+
+
 // 获取文章详情
 export function article(params) {
     return requery({

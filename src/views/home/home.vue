@@ -64,7 +64,10 @@
 
 <script>
 import more from "./components/more";
-import { userChannel, userList } from "@/api/home.js";
+import { userChannel } from "@/api/user.js";
+
+import { articleList } from "@/api/article.js";
+
 import popup from "./components/popup";
 import { getToken, setToken } from "@/utils/token.js";
 export default {
@@ -100,7 +103,7 @@ export default {
       }
     } else {
       // 判断本地有没有储存频道
-      let res=getToken("channelsList")
+      let res = getToken("channelsList");
       if (res) {
         this.channelList = getToken("channelsList");
         window.console.log("222");
@@ -108,6 +111,7 @@ export default {
 
         window.console.log(this.channelList);
       } else {
+
         let res = await userChannel();
         this.channelList = res.data.channels;
         window.console.log("11111");
@@ -142,7 +146,7 @@ export default {
     },
     // 只要屏幕铺满 上啦的时候内容是最后一条 并且loading为false才执行的函数
     async onLoad(item) {
-      let res = await userList({
+      let res = await articleList({
         channel_id: item.id,
         timestamp: item.pre_date,
         with_top: 0
@@ -167,7 +171,7 @@ export default {
         (item.loading = false),
         (item.pre_date = Date.now());
 
-      let res = await userList({
+      let res = await articleList({
         channel_id: item.id,
         timestamp: item.pre_date,
         with_top: 0

@@ -20,7 +20,7 @@
 
           <div class="time">
             <span>{{item.pubdate|filterData}}</span>
-            <span class="t_span">回复{{item.reply_count}}</span>
+            <span class="t_span" @click="goHf(item)">回复{{item.reply_count}}</span>
           </div>
         </template>
       </van-cell>
@@ -48,13 +48,14 @@ export default {
       this.list.unshift(data);
     });
   },
-  watch: {
-    list(val) {
-      // 发送list的长度
-      bus.$emit("num", val.length);
-    }
-  },
   methods: {
+    // 点击回复
+
+    goHf(item) {
+      if (this.commen()) {
+        bus.$emit("goitem", item);
+      }
+    },
     // 点赞
     async dz(item) {
       if (this.commen()) {
@@ -81,7 +82,8 @@ export default {
         offset: this.naxtId
       });
       // window.console.log(res);
-      this.list = res.data.results;
+      bus.$emit("count", res.data.total_count);
+      this.list.push(...res.data.results);
 
       if (res.data.end_id == res.data.last_id) {
         this.finished = true;
@@ -111,6 +113,8 @@ export default {
     .username {
       flex: 1;
       margin-left: 10px;
+      color: skyblue;
+      font-size: 16px;
     }
     .icon {
       font-size: 20px;
@@ -121,6 +125,8 @@ export default {
   }
   .comment_conten {
     margin-left: 60px;
+    word-wrap: break-word;
+    word-break: break-all;
   }
   .time {
     margin: 10px 0 10px 60px;

@@ -18,7 +18,10 @@
 </template>
 
 <script>
-import { userDislikes, userReports, userBlacklists } from "@/api/home.js";
+import { userBlacklists } from "@/api/user.js";
+
+import { articleDislikes, articleReports } from "@/api/article.js";
+
 export default {
   data() {
     return {
@@ -56,7 +59,7 @@ export default {
           break;
         }
       }
-      await userDislikes({
+      await articleDislikes({
         target: this.articles_id
       });
       this.show = false;
@@ -70,7 +73,7 @@ export default {
           break;
         }
       }
-      await userReports({
+      await articleReports({
         target: this.articles_id,
         type: type
       });

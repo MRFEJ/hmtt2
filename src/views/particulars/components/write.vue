@@ -3,7 +3,7 @@
     <van-cell-group>
       <van-field @keydown.enter="fpl" v-model="value" placeholder="写评论" />
     </van-cell-group>
-    <van-tabbar-item icon="comment-o" :info="num"></van-tabbar-item>
+    <van-tabbar-item @click="fpl" icon="comment-o" :info="num"></van-tabbar-item>
     <div>
       <van-tabbar-item @click="qxsc" v-if="isok" color="pink" icon="star"></van-tabbar-item>
       <van-tabbar-item @click="sc" v-else color="pink" icon="star-o"></van-tabbar-item>
@@ -28,8 +28,13 @@ export default {
       num: null
     };
   },
+  watch: {
+    is_collected(val) {
+      this.isok = val;
+    }
+  },
   created() {
-    bus.$on("num", data => {
+    bus.$on("count", data => {
       this.num = data;
     });
   },
