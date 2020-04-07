@@ -2,7 +2,7 @@
   <div class="my">
     <div class="top" v-if="$store.state.myToken">
       <div class="avatar">
-        <img class="ava_img" :src="data.photo" alt />
+        <img @click="$router.push('/information')" class="ava_img" :src="data.photo" alt />
         <span>{{data.name}}</span>
       </div>
 
@@ -23,7 +23,7 @@
 
       <div class="today">
         <div>今日阅读</div>
-        <div>0分钟</div>
+        <div>{{$store.state.num}}分钟</div>
       </div>
     </div>
 
@@ -60,12 +60,19 @@
     <van-cell-group>
       <van-cell title="消息通知" is-link />
       <van-cell title="用户反馈" is-link />
-      <van-cell title="小智同学" is-link />
+      <van-cell
+        @click="$router.push({path:'/xiaozhi',query:{avatar:data.photo}})"
+        title="小智同学"
+        is-link
+      />
     </van-cell-group>
+
+    <van-button @click="goOut" class="goOut" type="info">退出登录</van-button>
   </div>
 </template>
 
 <script>
+import { removeToken } from "@/utils/token";
 import { userProfile } from "@/api/user";
 export default {
   data() {
@@ -75,8 +82,18 @@ export default {
   },
   async created() {
     let res = await userProfile();
-    window.console.log(res);
-    this.data=res.data
+    // window.console.log(res);
+    this.data = res.data;
+  },
+  methods: {
+    goOut() {
+      // window.console.log('11');
+      this.$store.commit('changeNum',0)
+      clearInterval(this.$store.state.time);
+      removeToken("myToken");
+      this.$store.commit("changeMytoken", "");
+      this.$router.push("/login");
+    }
   }
 };
 </script>
@@ -164,6 +181,12 @@ export default {
     span {
       font-size: 16px;
     }
+  }
+  .goOut {
+    width: 50%;
+    left: 25%;
+    top: 30px;
+    font-size: 20px;
   }
 }
 </style>

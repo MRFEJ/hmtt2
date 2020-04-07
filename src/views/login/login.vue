@@ -32,6 +32,7 @@
 <script>
 import { setToken } from "@/utils/token.js";
 import { login } from "@/api/login.js";
+import time from "@/utils/time.js";
 export default {
   data() {
     return {
@@ -47,6 +48,7 @@ export default {
     };
   },
   methods: {
+    // 点击登录
     async gologin() {
       if (this.ok()) {
         this.isok = true;
@@ -61,11 +63,11 @@ export default {
           this.$store.commit("changeMytoken", res.data.token);
           this.$store.commit("changeRestoken", res.data.refresh_token);
           setToken("myToken", JSON.stringify(res.data));
-          // setToken("resToken", JSON.stringify(res.data.refresh_token));
+          time();
           if (this.$route.path == "/login") {
             this.$router.push("/home");
-          }else{
-            this.$router.back()
+          } else {
+            this.$router.back();
           }
           this.$toast.success("登录成功");
         } catch (error) {

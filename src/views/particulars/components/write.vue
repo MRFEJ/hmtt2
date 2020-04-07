@@ -50,6 +50,7 @@ export default {
         bus.$emit("send", res.data.new_obj);
         this.$toast.success("评论成功");
         this.value = "";
+        this.num++;
       }
     },
     // 点击收藏

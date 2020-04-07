@@ -5,7 +5,7 @@ import requery from "@/utils/requery.js"
 export function userChannel() {
     return requery({
         url: 'user/channels',
-        method:'get'
+        method: 'get'
     })
 }
 
@@ -42,5 +42,32 @@ export function userProfile() {
     return requery({
         url: 'user/profile',
         method: 'get',
+    })
+}
+
+// 获取用户个人资料
+export function user() {
+    return requery({
+        url: 'user',
+        method: 'get',
+    })
+}
+
+// 上传用户头像
+export function userPhoto(data) {
+    let fd = new FormData()
+    fd.append('photo', data.photo)
+    return requery({
+        url: 'user/photo',
+        method: 'PATCH',
+        data: fd
+    })
+}
+// 编辑用户的资料
+export function userEdit(data) {
+    return requery({
+        url: 'user/profile',
+        method: 'PATCH',
+        data
     })
 }

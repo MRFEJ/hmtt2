@@ -13,6 +13,12 @@ Vue.config.productionTip = false
 // 导入全局过滤器
 import "@/filter/filter.js"
 
+// 自动改变rem的值
+import "amfe-flexible/index.js"
+
+import time from "./utils/time"
+time()
+
 // 导入判断用户有没有登录的自定义插件自定义插件
 import myLike from "@/utils/like.js"
 // 注册这个组件相当于调用了myLike对象里面的install方法 记得把Vue作参数

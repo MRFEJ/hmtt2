@@ -21,7 +21,6 @@ const resRequery = axios.create({
   // 对响应数据进行修改
   transformResponse: [function (data) {
     // 对 data 进行任意转换处理
-
     return JSONbig.parse(data);
   }],
 

@@ -204,6 +204,7 @@ export default {
       display: flex;
       justify-content: space-around;
       span {
+        font-size: 16px;
         width: 80px;
         height: 40px;
         border-radius: 20px;

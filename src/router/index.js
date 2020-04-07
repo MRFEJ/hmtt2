@@ -9,10 +9,17 @@ import my from "@/views/my/my"
 import search from "@/views/search/search"
 import searchResult from "@/views/searchResult/searchResult"
 import particulars from "@/views/particulars/particulars"
+import information from "@/views/information/information"
+import xiaozhi from "@/views/xiaozhi/xiaozhi"
 
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '*',
+    redirect: "/home"
+  },
+
   {
     path: '/login',
     component: login
@@ -20,6 +27,10 @@ const routes = [
   {
     path: '/goLogin',
     component: login
+  },
+  {
+    path: '/xiaozhi',
+    component: xiaozhi
   },
   {
     path: '/index',
@@ -64,6 +75,11 @@ const routes = [
     path: '/particulars/:key',
     component: particulars
   },
+  {
+    path: '/information/',
+    component: information
+  },
+
 
 ]
 
