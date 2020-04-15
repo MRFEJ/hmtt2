@@ -67,7 +67,7 @@
       />
     </van-cell-group>
 
-    <van-button @click="goOut" class="goOut" type="info">退出登录</van-button>
+    <van-button v-show="$store.state.myToken" @click="goOut" class="goOut" type="info">退出登录</van-button>
   </div>
 </template>
 
