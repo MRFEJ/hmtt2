@@ -107,7 +107,7 @@ export default {
       let res = getToken("channelsList");
       if (res) {
         this.channelList = getToken("channelsList");
-        window.console.log("222");
+        window.console.log("2223333");
         // window.console.log(getToken("channelsList"));
 
         window.console.log(this.channelList);
