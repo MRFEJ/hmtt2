@@ -84,6 +84,7 @@ export default {
     };
   },
   async created() {
+    
     // 判断有没有token
     if (this.$store.state.myToken) {
       let res = await userChannel();
