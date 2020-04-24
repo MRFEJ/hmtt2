@@ -16,7 +16,7 @@
           <span>关注</span>
         </div>
         <div>
-          <span>0</span>
+          <span>1</span>
           <span>粉丝</span>
         </div>
       </div>
