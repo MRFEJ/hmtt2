@@ -8,7 +8,7 @@
 
       <div class="dontai">
         <div>
-          <span>0</span>
+          <span>1</span>
           <span>动态</span>
         </div>
         <div>
